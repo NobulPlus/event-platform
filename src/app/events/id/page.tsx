@@ -1,7 +1,7 @@
-import { getEvents } from 'lib/data';
-import { getWeather } from 'lib/weather';
+import { getEvents } from '@/lib/data';
+import { getWeather } from '@/lib/weather';
 import { notFound } from 'next/navigation';
-import { useFavorites } from 'context/FavoritesContext';
+import { useFavorites } from '@/context/FavoritesContext';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { NextPage } from 'next';

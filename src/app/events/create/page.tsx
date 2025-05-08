@@ -1,70 +1,21 @@
-import { getEvents } from 'lib/data';
-   import { getWeather } from 'lib/weather';
-   import { notFound } from 'next/navigation';
-   import { useFavorites } from 'context/FavoritesContext';
-   import Link from 'next/link';
-   import Image from 'next/image';
-   import type { NextPage } from 'next';
+'use client';
 
-   interface EventPageProps {
-     params: Promise<{ id: string }>;
-   }
+import EventForm from '@/components/EventForm';
+import Link from 'next/link';
 
-   const EventPage: NextPage<EventPageProps> = async ({ params }) => {
-     const { id } = await params;
-     const events = await getEvents();
-     const event = events.find((e) => e.id === id);
-
-     if (!event) {
-       notFound();
-     }
-
-     const weather = await getWeather(event.location);
-
-     return (
-       <div>
-         <Image
-           src={event.image}
-           alt={event.title}
-           width={800}
-           height={400}
-           className="object-cover"
-         />
-         <h1>{event.title}</h1>
-         <p>
-           <strong>Date:</strong> {event.date}
-         </p>
-         <p>
-           <strong>Location:</strong> {event.location}
-         </p>
-         <p>
-           <strong>Description:</strong> {event.description}
-         </p>
-         <div>
-           <h2>Weather Forecast</h2>
-           {weather ? (
-             <p>
-               Temperature: {weather.temperature}°C, Condition: {weather.condition}
-             </p>
-           ) : (
-             <p>Weather information unavailable</p>
-           )}
-         </div>
-         <FavoriteButton eventId={event.id} />
-         <Link href="/">Back to Home</Link>
-       </div>
-     );
-   };
-
-   function FavoriteButton({ eventId }: { eventId: string }) {
-     const { favorites, toggleFavorite } = useFavorites();
-     const isFavorited = favorites.includes(eventId);
-
-     return (
-       <button onClick={() => toggleFavorite(eventId)}>
-         {isFavorited ? '❤️' : '♡'} Favorite
-       </button>
-     );
-   }
-
-   export default EventPage;
+export default function CreateEventPage() {
+  return (
+    <div className="container mx-auto p-4">
+      <div className="mb-6">
+        <Link href="/" className="text-blue-500 hover:underline">
+          ← Back to Events
+        </Link>
+      </div>
+      
+      <h1 className="text-3xl font-bold mb-6">Create New Event</h1>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <EventForm />
+      </div>
+    </div>
+  );
+}

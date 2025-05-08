@@ -1,6 +1,6 @@
 import Link from 'next/link';
    import Image from 'next/image';
-   import type { Event } from 'lib/data';
+   import type { Event } from '@/lib/data';
 
    interface EventCardProps {
      event: Event;
