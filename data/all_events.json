@@ -1,0 +1,42 @@
+import fs from 'fs/promises';
+import path from 'path';
+import { Event } from '@/types';
+
+const eventsPath = path.join(process.cwd(), 'data', 'events.json');
+const allEventsPath = path.join(process.cwd(), 'data', 'all_events.json');
+
+export async function getEvents(): Promise<Event[]> {
+  try {
+    await ensureEventsFile();
+    const data = await fs.readFile(allEventsPath, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading events:', error);
+    return [];
+  }
+}
+
+export async function addEvent(event: Omit<Event, 'id'>): Promise<Event> {
+  try {
+    const events = await getEvents();
+    const newEvent: Event = {
+      id: (events.length + 1).toString(),
+      ...event,
+    };
+    events.push(newEvent);
+    await fs.writeFile(allEventsPath, JSON.stringify(events, null, 2));
+    return newEvent;
+  } catch (error) {
+    console.error('Error adding event:', error);
+    throw new Error('Failed to add event');
+  }
+}
+
+async function ensureEventsFile() {
+  try {
+    await fs.access(allEventsPath);
+  } catch {
+    const initialData = await fs.readFile(eventsPath, 'utf-8');
+    await fs.writeFile(allEventsPath, initialData);
+  }
+}

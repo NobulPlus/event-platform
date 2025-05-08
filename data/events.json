@@ -1,0 +1,26 @@
+[
+    {
+      "id": "1",
+      "title": "ilera-eko day",
+      "date": "2025-26-04",
+      "location": "Lagos, Nigeria",
+      "description": "A conference for enthusiasts to celebrate LASHMA & ILERA EKO.",
+      "image": "/uploads/image1.jpg"
+    },
+    {
+      "id": "2",
+      "title": "National Worker's Day",
+      "date": "2025-05-01",
+      "location": "Onikan Stadium, Lagos",
+      "description": "Enjoy live performances from top artists in an open-air setting.",
+      "image": "/uploads/image2.jpg"
+    },
+    {
+      "id": "3",
+      "title": "Wedding Celebration",
+      "date": "2025-03-01",
+      "location": "Ikeja, Lagos",
+      "description": "It is my birthday celebration.",
+      "image": "/uploads/image3.jpg"
+    }
+  ]
