@@ -1,42 +1,26 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { Event } from '@/types';
-
-const eventsPath = path.join(process.cwd(), 'data', 'events.json');
-const allEventsPath = path.join(process.cwd(), 'data', 'all_events.json');
-
-export async function getEvents(): Promise<Event[]> {
-  try {
-    await ensureEventsFile();
-    const data = await fs.readFile(allEventsPath, 'utf-8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading events:', error);
-    return [];
+[
+  {
+    "id": "b9c5c4ae-7046-44fa-a719-7fb066094c67",
+    "title": "Test",
+    "date": "2025-02-01",
+    "location": "Test",
+    "description": "Test",
+    "image": "/uploads/2d1c42ae-2a66-4c64-848b-24522e43e151.png"
+  },
+  {
+    "id": "bdf87376-9f29-4f44-95c5-1276ea053532",
+    "title": "Test 2 ",
+    "date": "2025-02-01",
+    "location": "Test 3",
+    "description": "Test 3",
+    "image": "/uploads/438d0bec-61bd-4bcf-bd04-07550218c987.jpg"
+  },
+  {
+    "id": "a789a08b-9076-4d1a-a3fd-7a1cefaf594e",
+    "title": "daughter of light",
+    "date": "1996-12-24",
+    "location": "the city of God",
+    "description": "I am a light , shone for Christ and Christ lives in me.",
+    "image": "/uploads/427c3a9d-c472-4208-b669-de49bdd0a035.jpg"
   }
-}
-
-export async function addEvent(event: Omit<Event, 'id'>): Promise<Event> {
-  try {
-    const events = await getEvents();
-    const newEvent: Event = {
-      id: (events.length + 1).toString(),
-      ...event,
-    };
-    events.push(newEvent);
-    await fs.writeFile(allEventsPath, JSON.stringify(events, null, 2));
-    return newEvent;
-  } catch (error) {
-    console.error('Error adding event:', error);
-    throw new Error('Failed to add event');
-  }
-}
-
-async function ensureEventsFile() {
-  try {
-    await fs.access(allEventsPath);
-  } catch {
-    const initialData = await fs.readFile(eventsPath, 'utf-8');
-    await fs.writeFile(allEventsPath, initialData);
-  }
-}
+]
