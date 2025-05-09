@@ -5,13 +5,20 @@ const locationCoordinates: Record<string, { latitude: number; longitude: number 
 };
 
 export async function getWeather(location: string) {
+  console.log(`Fetching weather for location: ${location}`);
   const coords = locationCoordinates[location];
-  if (!coords) return null;
+  if (!coords) {
+    console.warn(`No coordinates found for location: ${location}`);
+    return { error: `Weather data not available for ${location}` };
+  }
 
   try {
     const response = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&current_weather=true`
     );
+    if (!response.ok) {
+      throw new Error(`Weather API returned ${response.status}: ${await response.text()}`);
+    }
     const data = await response.json();
     
     return {
@@ -19,8 +26,8 @@ export async function getWeather(location: string) {
       condition: getWeatherCondition(data.current_weather.weathercode),
     };
   } catch (error) {
-    console.error('Error fetching weather:', error);
-    return null;
+    console.error(`Error fetching weather for ${location}:`, error);
+    return { error: `Failed to fetch weather for ${location}` };
   }
 }
 

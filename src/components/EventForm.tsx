@@ -51,76 +51,209 @@ export default function EventForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        maxWidth: '28rem',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+      }}
+    >
       <div>
-        <label htmlFor="title" className="block mb-1 font-medium">Title*</label>
+        <label
+          htmlFor="title"
+          style={{
+            display: 'block',
+            marginBottom: '0.25rem',
+            fontWeight: '500',
+            color: '#1f2937',
+          }}
+        >
+          Title*
+        </label>
         <input
           type="text"
           id="title"
           name="title"
           required
-          className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            border: '1px solid #d1d5db',
+            borderRadius: '0.375rem',
+            outline: 'none',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.5)';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = '#d1d5db';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         />
       </div>
 
       <div>
-        <label htmlFor="date" className="block mb-1 font-medium">Date*</label>
+        <label
+          htmlFor="date"
+          style={{
+            display: 'block',
+            marginBottom: '0.25rem',
+            fontWeight: '500',
+            color: '#1f2937',
+          }}
+        >
+          Date*
+        </label>
         <input
           type="date"
           id="date"
           name="date"
           required
-          className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            border: '1px solid #d1d5db',
+            borderRadius: '0.375rem',
+            outline: 'none',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.5)';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = '#d1d5db';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         />
       </div>
 
       <div>
-        <label htmlFor="location" className="block mb-1 font-medium">Location*</label>
+        <label
+          htmlFor="location"
+          style={{
+            display: 'block',
+            marginBottom: '0.25rem',
+            fontWeight: '500',
+            color: '#1f2937',
+          }}
+        >
+          Location*
+        </label>
         <input
           type="text"
           id="location"
           name="location"
           required
-          className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            border: '1px solid #d1d5db',
+            borderRadius: '0.375rem',
+            outline: 'none',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.5)';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = '#d1d5db';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         />
       </div>
 
       <div>
-        <label htmlFor="description" className="block mb-1 font-medium">Description*</label>
+        <label
+          htmlFor="description"
+          style={{
+            display: 'block',
+            marginBottom: '0.25rem',
+            fontWeight: '500',
+            color: '#1f2937',
+          }}
+        >
+          Description*
+        </label>
         <textarea
           id="description"
           name="description"
           required
           rows={4}
-          className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            border: '1px solid #d1d5db',
+            borderRadius: '0.375rem',
+            outline: 'none',
+            resize: 'vertical',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 0 0 2px rgba(59, 130, 246, 0.5)';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = '#d1d5db';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         />
       </div>
 
       <div>
-        <label htmlFor="image" className="block mb-1 font-medium">Event Image</label>
+        <label
+          htmlFor="image"
+          style={{
+            display: 'block',
+            marginBottom: '0.25rem',
+            fontWeight: '500',
+            color: '#1f2937',
+          }}
+        >
+          Event Image
+        </label>
         <input
           type="file"
           id="image"
           name="image"
           accept="image/*"
           onChange={handleImageChange}
-          className="w-full p-2 border rounded"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            border: '1px solid #d1d5db',
+            borderRadius: '0.375rem',
+          }}
         />
         {preview && (
-          <div className="mt-2">
+          <div style={{ marginTop: '0.5rem' }}>
             <Image
               src={preview}
               alt="Preview"
               width={300}
               height={200}
-              className="rounded object-cover"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '200px',
+                borderRadius: '0.375rem',
+              }}
             />
           </div>
         )}
       </div>
 
       {error && (
-        <div className="p-2 text-red-500 bg-red-50 rounded">
+        <div
+          style={{
+            padding: '0.5rem',
+            color: '#ef4444',
+            backgroundColor: '#fef2f2',
+            borderRadius: '0.375rem',
+          }}
+        >
           Error: {error}
         </div>
       )}
@@ -128,9 +261,25 @@ export default function EventForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`px-4 py-2 rounded text-white ${
-          isSubmitting ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'
-        }`}
+        style={{
+          padding: '0.5rem 1rem',
+          borderRadius: '0.375rem',
+          color: 'white',
+          backgroundColor: isSubmitting ? '#9ca3af' : '#3b82f6',
+          border: 'none',
+          cursor: isSubmitting ? 'not-allowed' : 'pointer',
+          transition: 'background-color 0.2s',
+        }}
+        onMouseOver={(e) => {
+          if (!isSubmitting) {
+            e.currentTarget.style.backgroundColor = '#2563eb';
+          }
+        }}
+        onMouseOut={(e) => {
+          if (!isSubmitting) {
+            e.currentTarget.style.backgroundColor = '#3b82f6';
+          }
+        }}
       >
         {isSubmitting ? 'Creating...' : 'Create Event'}
       </button>

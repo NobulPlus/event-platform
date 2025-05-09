@@ -5,30 +5,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const dynamic = 'force-dynamic';
 
-// Updated path to point to data folder outside src
 const eventsPath = path.join(process.cwd(), 'data', 'all_events.json');
 
 export async function POST(req: NextRequest) {
   try {
-    // Ensure directories exist
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
     const dataDir = path.join(process.cwd(), 'data');
     
-    try {
-      await fs.access(uploadsDir);
-    } catch {
-      await fs.mkdir(uploadsDir, { recursive: true });
-    }
-
-    try {
-      await fs.access(dataDir);
-    } catch {
-      await fs.mkdir(dataDir, { recursive: true });
-    }
+    await fs.mkdir(uploadsDir, { recursive: true });
+    await fs.mkdir(dataDir, { recursive: true });
 
     const formData = await req.formData();
     
-    // Validate required fields
+  
     const title = formData.get('title')?.toString();
     const date = formData.get('date')?.toString();
     const location = formData.get('location')?.toString();
@@ -42,7 +31,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Handle image upload
+  
     let imagePath = '/default-event.jpg';
     if (image && image.size > 0) {
       const ext = path.extname(image.name);
@@ -56,17 +45,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Initialize events array
+  
     let existingEvents = [];
     try {
       const fileContent = await fs.readFile(eventsPath, 'utf-8');
       existingEvents = JSON.parse(fileContent);
     } catch {
-      console.log('Creating new events file');
-      await fs.writeFile(eventsPath, '[]'); // Initialize with empty array
+      await fs.writeFile(eventsPath, '[]');
     }
 
-    // Create and save new event
+  
     const newEvent = {
       id: uuidv4(),
       title,
@@ -76,6 +64,7 @@ export async function POST(req: NextRequest) {
       image: imagePath,
     };
 
+  
     const updatedEvents = [...existingEvents, newEvent];
     await fs.writeFile(eventsPath, JSON.stringify(updatedEvents, null, 2));
 

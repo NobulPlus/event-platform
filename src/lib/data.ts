@@ -22,7 +22,7 @@ export async function getEvents(): Promise<Event[]> {
   }
 }
 
-export async function getEventById(id: string): Promise<Event | undefined> {
+export async function getEventById(id: string): Promise<Event | null> {
   const events = await getEvents();
-  return events.find(event => event.id === id);
+  return events.find(event => event.id === id) || null;
 }

@@ -22,5 +22,29 @@
     "location": "the city of God",
     "description": "I am a light , shone for Christ and Christ lives in me.",
     "image": "/uploads/427c3a9d-c472-4208-b669-de49bdd0a035.jpg"
+  },
+  {
+    "id": "fae1a7d6-ece9-4c0b-ba5a-1f626da12987",
+    "title": "Test 5",
+    "date": "2025-04-02",
+    "location": "Ikeja, Lagos Nigeria",
+    "description": "This is test 5",
+    "image": "/uploads/bde355d8-a95a-464a-97c1-5736078d09e4.jpg"
+  },
+  {
+    "id": "25cc26c6-e0ad-4874-a450-c71ffcd3ad8b",
+    "title": "Test 6",
+    "date": "2026-03-01",
+    "location": "Lagos, Nigeria",
+    "description": "Test 6",
+    "image": "/uploads/6bc9eafd-794b-46d1-9619-7107f4f7cfea.jpg"
+  },
+  {
+    "id": "e1e3da26-9da1-4341-bd31-da8096e59ae8",
+    "title": "Event 7",
+    "date": "2025-08-04",
+    "location": "Lagos, Nigeria",
+    "description": "This is a proper test with a bit of inline styling.\r\n",
+    "image": "/uploads/1f249da7-3411-4acc-a70b-bff1230b203e.jpg"
   }
 ]
